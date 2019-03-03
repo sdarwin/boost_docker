@@ -19,5 +19,7 @@ RUN apt update && apt install -y \
         ghostscript \
         unzip \
         wget \
+        python-pip \
+        ruby \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean -y
