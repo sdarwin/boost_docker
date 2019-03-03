@@ -12,9 +12,11 @@ RUN apt update && apt install -y \
         docbook-xsl \
         xsltproc \
         doxygen \
-        # dvipsk-ja \
+        openssh-client \
+        git \
         texlive \
         sshpass \
         ghostscript \
+        wget \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean -y
