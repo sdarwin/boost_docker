@@ -17,6 +17,7 @@ RUN apt update && apt install -y \
         texlive \
         sshpass \
         ghostscript \
+        unzip \
         wget \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean -y
