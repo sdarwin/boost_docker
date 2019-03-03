@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM ubuntu:xenial
 LABEL maintainer="damian.jarek93@gmail.com"
 
 WORKDIR /root
@@ -10,6 +10,7 @@ RUN apt update && apt install -y \
         docbook \
         docbook-xml \
         docbook-xsl \
+        dvipsk-ja \
         xsltproc \
         doxygen \
         openssh-client \
