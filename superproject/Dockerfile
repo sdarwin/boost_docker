@@ -15,6 +15,7 @@ RUN apt update && apt install -y \
         doxygen \
         openssh-client \
         git \
+        graphviz \
         texlive \
         sshpass \
         ghostscript \
@@ -22,5 +23,6 @@ RUN apt update && apt install -y \
         wget \
         python-pip \
         ruby \
+        python-docutils \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean -y
