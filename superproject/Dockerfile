@@ -5,6 +5,7 @@ WORKDIR /root
 
 RUN apt update && apt install -y \
         p7zip-full  \
+        curl \
         docutils-common \
         docutils-doc \
         docbook \
