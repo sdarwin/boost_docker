@@ -29,6 +29,7 @@ RUN apt update && apt install -y \
         bison \
         flex \
         texlive-latex-extra \
+        default-jre-headless \
     && git clone -b 'Release_1_8_15' --depth 1 https://github.com/doxygen/doxygen.git \
     && cd doxygen \
     && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Release \
