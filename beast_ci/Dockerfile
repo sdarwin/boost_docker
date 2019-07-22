@@ -12,6 +12,7 @@ RUN apt update && apt install -y \
         sudo \
     && apt-add-repository -y "ppa:ubuntu-toolchain-r/test" \
     && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
+    && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-7 main" \
     && apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" \
