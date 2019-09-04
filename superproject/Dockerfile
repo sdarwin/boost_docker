@@ -36,5 +36,10 @@ RUN apt update && apt install -y \
     && cd build \
     && make install \
     && cd && rm -rf doxygen* \
+    && wget -O saxonhe.zip https://sourceforge.net/projects/saxon/files/Saxon-HE/9.9/SaxonHE9-9-1-4J.zip/download \
+    && unzip saxonhe.zip \
+    && rm /usr/share/java/Saxon-HE.jar \
+    && cp saxon9he.jar /usr/share/java/Saxon-HE.jar \
+    && rm -r * \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean -y
