@@ -1,9 +1,11 @@
-FROM ubuntu:xenial
-LABEL maintainer="damian.jarek93@gmail.com"
+FROM ubuntu:bionic
+LABEL maintainer="samuel.d.darwin@gmail.com"
 
 WORKDIR /root
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata \
+    && apt-get install -y \
         p7zip-full  \
         curl \
         docutils-common \
@@ -11,7 +13,6 @@ RUN apt-get update && apt-get install -y \
         docbook \
         docbook-xml \
         docbook-xsl \
-        dvipsk-ja \
         xsltproc \
         openssh-client \
         git \
@@ -21,9 +22,9 @@ RUN apt-get update && apt-get install -y \
         ghostscript \
         unzip \
         wget \
-        python-pip \
+        python3-pip \
         ruby \
-        python-docutils \
+        python3-docutils \
         libsaxonhe-java \
         cmake \
         bison \
@@ -44,19 +45,25 @@ RUN apt-get update && apt-get install -y \
     && mkdir build && cd build \
     && wget -O rapidxml.zip http://sourceforge.net/projects/rapidxml/files/latest/download \
     && unzip -n -d rapidxml rapidxml.zip \
-    && pip install --user docutils \
     && echo "Sphinx==1.5.6" > constraints.txt \
-    && pip install --user Sphinx==1.5.6 \
-    && pip install --user sphinx-boost==0.0.3 \
-    && pip install --user -c /root/build/constraints.txt git+https://github.com/rtfd/recommonmark@50be4978d7d91d0b8a69643c63450c8cd92d1212 \ 
+    && pip3 install --user Sphinx==1.5.6 \
+    && pip3 install --user sphinx-boost==0.0.3 \
+    && pip3 install --user -c /root/build/constraints.txt git+https://github.com/rtfd/recommonmark@50be4978d7d91d0b8a69643c63450c8cd92d1212 \ 
     && wget -O docbook-xml.zip http://www.docbook.org/xml/4.5/docbook-xml-4.5.zip \
     && unzip -n -d docbook-xml docbook-xml.zip \
     && wget -O docbook-xsl.zip https://sourceforge.net/projects/docbook/files/docbook-xsl/1.79.1/docbook-xsl-1.79.1.zip/download \
     && unzip -n -d docbook-xsl docbook-xsl.zip \
     && gem install asciidoctor --version 1.5.8 \
     && asciidoctor --version \
-    && gem install pygments.rb \
-    && pip install --user Pygments \
-    && pip install --user https://github.com/bfgroup/jam_pygments/archive/master.zip \
+    && git clone -b python3 https://github.com/CPPAlliance/pygments.rb \
+    && cd pygments.rb \
+    && gem install multi_json --version 1.14.1 \
+    && ruby cache-lexers.rb \
+    && gem build pygments.rb.gemspec \
+    && gem install pygments.rb-1.2.2.gem \
+    && pip3 install --user Pygments==2.2.0 \
+    && pip3 install --user https://github.com/bfgroup/jam_pygments/archive/master.zip \
+    && pip3 install --user future==0.18.2 \
+    && pip3 install --user six==1.11.0 \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean -y
