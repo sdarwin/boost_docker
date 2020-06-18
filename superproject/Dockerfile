@@ -58,5 +58,7 @@ RUN apt-get update && apt-get install -y \
     && gem install pygments.rb --version 1.2.1 \
     && pip install --user Pygments==2.1 \
     && pip install --user https://github.com/bfgroup/jam_pygments/archive/master.zip \
+    && pip install future==0.18.2 \
+    && pip install six \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean -y
